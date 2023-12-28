@@ -1,0 +1,27 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'common_area_repository.dart';
+
+// **************************************************************************
+// RiverpodGenerator
+// **************************************************************************
+
+String _$commonAreaRepositoryHash() =>
+    r'ef1f3b4f6559de800627dbc25bb29e53f95e5c91';
+
+/// See also [commonAreaRepository].
+@ProviderFor(commonAreaRepository)
+final commonAreaRepositoryProvider =
+    AutoDisposeProvider<CommonAreaRepository>.internal(
+  commonAreaRepository,
+  name: r'commonAreaRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$commonAreaRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CommonAreaRepositoryRef = AutoDisposeProviderRef<CommonAreaRepository>;
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
