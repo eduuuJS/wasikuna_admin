@@ -5,10 +5,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:http_parser/src/media_type.dart';
 import 'package:wasikuna_admin/app/features/booking/data/dto/request_create_booking_dto.dart';
 import 'package:wasikuna_admin/app/features/booking/data/dto/response_area_detail_dto.dart';
-import 'package:wasikuna_admin/app/features/booking/data/dto/response_atachment_dto.dart';
 import 'package:wasikuna_admin/app/features/booking/data/dto/response_booking_detail_dto.dart';
 import 'package:wasikuna_admin/app/features/booking/domain/area_detail_domain.dart';
 import 'package:wasikuna_admin/app/features/booking/domain/booking_detail_domain.dart';
+import 'package:wasikuna_admin/app/shared/data/dtos/response_attachment_ids_dto.dart';
 import 'package:wasikuna_admin/app/shared/domain/response_mutation_domain.dart';
 import 'package:wasikuna_admin/core/network/dio_client.dart';
 import 'package:wasikuna_admin/core/utils/dependency_injection.dart';
@@ -59,7 +59,7 @@ class BookingRepository implements IBookingRepository {
           path: '/api/attachments/reservation/payment',
           contentType: 'multipart/form-data',
           formData: formData);
-      return ResponseAtachmentIdsDto.fromJson(response.data).ids!;
+      return ResponseAttachmentIdsDto.fromJson(response.data).ids!;
     } catch (e) {
       return [];
     }
@@ -115,6 +115,7 @@ class BookingRepository implements IBookingRepository {
           .put(path: "/api/reservation/approveOrObserve", bodyRaw: {
         "id": int.parse(idBooking),
         "status_reservation_id": isApproved ? 1 : 3,
+        "comment": comment,
       });
       final status = response.statusCode == 200;
       return ResponseMutationDomain(

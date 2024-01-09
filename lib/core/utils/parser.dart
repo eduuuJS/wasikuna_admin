@@ -103,19 +103,19 @@ abstract class Parser {
     Duration diferencia = ahora.difference(fechaEnvio);
 
     if (diferencia.inSeconds < 60) {
-      return "Hace ${diferencia.inSeconds} segundos";
+      return "Hace un momento";
     } else if (diferencia.inMinutes < 60) {
-      return "Hace ${diferencia.inMinutes} minutos";
+      return "Hace ${diferencia.inMinutes} minuto(s)";
     } else if (diferencia.inHours < 24) {
-      return "Hace ${diferencia.inHours} horas";
+      return "Hace ${diferencia.inHours} hora(s)";
     } else if (diferencia.inDays < 7) {
-      return "Hace ${diferencia.inDays} días";
+      return "Hace ${diferencia.inDays} día(s)";
     } else if (diferencia.inDays < 30) {
-      return "Hace ${(diferencia.inDays / 7).floor()} semanas";
+      return "Hace ${(diferencia.inDays / 7).floor()} semana(s)";
     } else if (diferencia.inDays < 365) {
-      return "Hace ${(diferencia.inDays / 30).floor()} meses";
+      return "Hace ${(diferencia.inDays / 30).floor()} mes(es)";
     } else {
-      return "Hace ${(diferencia.inDays / 365).floor()} años";
+      return "Hace ${(diferencia.inDays / 365).floor()} año(s)";
     }
   }
 

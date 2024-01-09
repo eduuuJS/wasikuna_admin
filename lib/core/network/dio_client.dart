@@ -136,10 +136,10 @@ class DioClient {
   }
 
   Future<bool> _checkInternetConnection() async {
-    // var connectivityResult = await (Connectivity().checkConnectivity());
-    // if (connectivityResult == ConnectivityResult.none) {
-    //   return false;
-    // }
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      return false;
+    }
     return true;
   }
 }

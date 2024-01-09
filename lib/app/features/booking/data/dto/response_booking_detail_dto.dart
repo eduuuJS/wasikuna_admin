@@ -1,5 +1,5 @@
 import 'package:wasikuna_admin/app/features/booking/domain/booking_detail_domain.dart';
-import 'package:wasikuna_admin/core/utils/constants.dart';
+import 'package:wasikuna_admin/core/utils/format_image.dart';
 import 'package:wasikuna_admin/core/utils/parser.dart';
 
 class ResponseBookingDetailDto {
@@ -89,7 +89,7 @@ class ResponseBookingDetailDto {
   BookingDetailDomain toDomain() => BookingDetailDomain(
         idBooking: "$id",
         nameArea: roomName!,
-        hrefArea: (roomImageDefault ?? "").replaceAll(localhost, myIP),
+        hrefArea: formatImage(roomImageDefault ?? ""),
         openTime: Parser.timeToStringFormat12(roomStarHour ?? ""),
         closeTime: Parser.timeToStringFormat12(roomEndHour ?? ""),
         qualificationArea: "4.5",
@@ -97,6 +97,7 @@ class ResponseBookingDetailDto {
         dateBooking: reservationDate!,
         coastArea: reservationPrice!,
         warranty: reservationWarranty!,
-        imagesPaymentBooking: reservationPayments!,
+        imagesPaymentBooking:
+            (reservationPayments!).map((e) => formatImage(e)).toList(),
       );
 }

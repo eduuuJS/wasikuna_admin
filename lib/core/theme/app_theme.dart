@@ -6,6 +6,21 @@ ThemeData appTheme(BuildContext context, Map<ColorsName, Color> colors) {
     fontFamily: 'Montserrat',
     // visualDensity: VisualDensity.adaptivePlatformDensity,
     primaryColor: colors[ColorsName.primaryColor],
+    primarySwatch: MaterialColor(
+      colors[ColorsName.primaryColor]!.value,
+      <int, Color>{
+        50: colors[ColorsName.primaryColor]!,
+        100: colors[ColorsName.primaryColor]!,
+        200: colors[ColorsName.primaryColor]!,
+        300: colors[ColorsName.primaryColor]!,
+        400: colors[ColorsName.primaryColor]!,
+        500: colors[ColorsName.primaryColor]!,
+        600: colors[ColorsName.primaryColor]!,
+        700: colors[ColorsName.primaryColor]!,
+        800: colors[ColorsName.primaryColor]!,
+        900: colors[ColorsName.primaryColor]!,
+      },
+    ),
     // scaffoldBackgroundColor: colors[ColorsName.backgroundColor],
     // colorScheme: ThemeData()
     //     .colorScheme

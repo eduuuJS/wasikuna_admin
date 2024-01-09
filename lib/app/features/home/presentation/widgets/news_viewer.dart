@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wasikuna_admin/app/features/home/domain/post_item_domain.dart';
 import 'package:wasikuna_admin/app/features/home/presentation/controllers.dart/news_controller.dart';
+import 'package:wasikuna_admin/app/features/home/presentation/widgets/card_item_post_file.dart';
 import 'package:wasikuna_admin/app/shared/presentation/components/buttons/icon_wrapper.dart';
 import 'package:wasikuna_admin/app/shared/presentation/components/separators/main_divider.dart';
 import 'package:wasikuna_admin/core/theme/app_colors.dart';
@@ -148,28 +149,54 @@ class ItemPostNews extends ConsumerWidget {
         )
       ],
     );
-    Widget mediaContent = Column(
-      children: item.files
-          .where((element) => element.type == TypeFilePostItemNewsDomain.image)
-          .map((file) => Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(vertical: 6.0),
-                      height: 160.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        image: DecorationImage(
-                          image: NetworkImage(file.url),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ))
-          .toList(),
-    );
+    // Widget mediaContent = Column(
+    //   children: item.files
+    //       .where((element) => element.type == TypeFilePostItemNewsDomain.image)
+    //       .map((file) => Row(
+    //             children: [
+    //               Expanded(
+    //                 child: Container(
+    //                   margin: const EdgeInsets.symmetric(vertical: 6.0),
+    //                   height: 160.0,
+    //                   decoration: BoxDecoration(
+    //                     borderRadius: BorderRadius.circular(10.0),
+    //                     image: DecorationImage(
+    //                       image: NetworkImage(file.url),
+    //                       fit: BoxFit.cover,
+    //                     ),
+    //                   ),
+    //                 ),
+    //               ),
+    //             ],
+    //           ))
+    //       .toList(),
+    // );
+
+    Widget mediaContent = item.files.length % 2 == 0
+        ? Column(
+            children: List.generate(
+              ((item.files.length + 1) / 2).floor(),
+              (index) {
+                return getRowContent(item.files, item.files[index * 2],
+                    item.files[index * 2 + 1]);
+              },
+            ),
+          )
+        : Column(
+            children: List.generate(
+              ((item.files.length + 1) / 2).floor(),
+              (index) {
+                if (index == 0) {
+                  return getUniqueContent(
+                    item.files[0],
+                    item.files,
+                  );
+                }
+                return getRowContent(item.files, item.files[(index * 2) - 1],
+                    item.files[index * 2]);
+              },
+            ),
+          );
 
     return Row(
       children: [
@@ -197,6 +224,33 @@ class ItemPostNews extends ConsumerWidget {
             ),
           ),
         ),
+      ],
+    );
+  }
+
+  Widget getRowContent(List<FilePostItemNewsDomain> listFiles,
+      FilePostItemNewsDomain first, FilePostItemNewsDomain second) {
+    return Row(
+      children: [
+        Expanded(child: CardItemPostFile(item: first, files: listFiles)),
+        const SizedBox(width: 2.0),
+        Expanded(child: CardItemPostFile(item: second, files: listFiles)),
+      ],
+    );
+  }
+
+  Widget getUniqueContent(
+    FilePostItemNewsDomain first,
+    List<FilePostItemNewsDomain> listFiles,
+  ) {
+    return Row(
+      children: [
+        Expanded(
+            child: CardItemPostFile(
+          files: listFiles,
+          item: first,
+          isImportant: true,
+        )),
       ],
     );
   }

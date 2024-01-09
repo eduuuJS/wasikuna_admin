@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:wasikuna_admin/app/features/booking/domain/schedule_area_item_domain.dart';
 import 'package:wasikuna_admin/app/features/booking/presentation/schedule_area/schedule_area_controller.dart';
 import 'package:wasikuna_admin/app/shared/presentation/components/dialogs/loading_widget.dart';
 import 'package:wasikuna_admin/app/shared/presentation/components/images/circular_wrapper.dart';
 import 'package:wasikuna_admin/app/shared/presentation/components/messages/data_icon_present.dart';
+import 'package:wasikuna_admin/core/routes/app_router.dart';
 import 'package:wasikuna_admin/core/theme/app_colors.dart';
 
 class BookingListViewer extends ConsumerWidget {
@@ -47,33 +49,63 @@ class ItemBooking extends ConsumerWidget {
       child: Column(
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CircularWrapper(
-                  url: item.urlPhotoOwner,
-                  isOnFire: item.isOnFireOwner,
-                  radius: 25.0),
-              const SizedBox(width: 12.0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    "Dpto. ${item.flatNumber}",
-                    style: TextStyle(
-                        color: colors[ColorsName.mainLetterColor],
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 7.0),
-                  Text(
-                    item.ownerName,
-                    style: TextStyle(
-                        color: colors[ColorsName.secondaryLetterColor],
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.w500),
+                  CircularWrapper(
+                      url: item.urlPhotoOwner,
+                      isOnFire: item.isOnFireOwner,
+                      radius: 25.0),
+                  const SizedBox(width: 12.0),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Dpto. ${item.flatNumber}",
+                        style: TextStyle(
+                            color: colors[ColorsName.mainLetterColor],
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 7.0),
+                      Text(
+                        item.ownerName,
+                        style: TextStyle(
+                            color: colors[ColorsName.secondaryLetterColor],
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.w500),
+                      )
+                    ],
                   )
                 ],
-              )
+              ),
+              item.state == BoockingState.pending
+                  ? Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(8.0),
+                        onTap: () {
+                          context.push(AppRoutesNamed.reviewBooking,
+                              extra: item);
+                        },
+                        child: Container(
+                            height: 30.0,
+                            width: 30.0,
+                            decoration: BoxDecoration(
+                                color: colors[ColorsName.primaryColor],
+                                borderRadius: BorderRadius.circular(8.0)),
+                            child: const Center(
+                              child: Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                color: Colors.white,
+                                size: 16.0,
+                              ),
+                            )),
+                      ),
+                    )
+                  : const SizedBox()
             ],
           ),
           const SizedBox(height: 17.0),

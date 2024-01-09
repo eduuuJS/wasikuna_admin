@@ -19,8 +19,8 @@ class ScheduleAreaRepository implements IScheduleAreaRepository {
   Future<List<ScheduleAreaItemDomain>> getScheduleAreaById(
       String id, DateTime date) async {
     final response = await _dioClient.get(
-      path: "/api/room/$id/reservations/${Parser.dateToDDMMYYYYEncoded(date)}",
-    );
+        path:
+            "/api/room/$id/reservations?date=${Parser.dateToDDMMYYYYEncoded(date)}&status_reservation_id=-1");
     return ResponseScheduleAreaDto.fromJson({"scheduleAreaDto": response.data})
         .toDomain();
   }

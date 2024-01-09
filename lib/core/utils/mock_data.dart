@@ -1,5 +1,4 @@
 import 'package:wasikuna_admin/app/features/home/domain/neighborg_item_domain.dart';
-import 'package:wasikuna_admin/app/features/home/domain/post_item_domain.dart';
 
 final fakeListNeighborgs = [
   NeighborgItemDomain(
@@ -118,34 +117,34 @@ final fakeListNeighborgs = [
       isImportant: true),
 ];
 
-final fakeListPosts = [
-  PostItemNewsDomain(
-      id: "id",
-      day: "05",
-      month: "Sep",
-      title: "Recibos de mantenimiento",
-      timeAgo: "Hace 1 hora",
-      contentText:
-          "Estimados vecinos segun lo programado, se esta realizando los mantenimientos correspondientes lamentamos cualquier inconveniente.",
-      publisher: "Corales Meddu S.A.C",
-      rolPublisher: "Administrador",
-      urlPhotoPublisher:
-          "https://static.vecteezy.com/system/resources/previews/014/362/759/non_2x/system-administrator-icon-cartoon-computer-server-vector.jpg",
-      hasMediaContent: true,
-      files: [
-        FilePostItemNewsDomain(
-            url:
-                "https://a.storyblok.com/f/167454/1024x450/f3e428f0e2/cleaning-services2.png/m/",
-            type: TypeFilePostItemNewsDomain.image),
-        FilePostItemNewsDomain(
-            url:
-                "https://media.admagazine.com/photos/61b7c48341b86fd66ff25cb8/4:3/w_2664,h_1998,c_limit/Edificios.jpg",
-            type: TypeFilePostItemNewsDomain.image),
-        FilePostItemNewsDomain(
-            url:
-                "https://a.storyblok.com/f/167454/1024x450/f3e428f0e2/cleaning-services2.png/m/",
-            type: TypeFilePostItemNewsDomain.image),
-      ]),
+// final fakeListPosts = [
+//   PostItemNewsDomain(
+//       id: "id",
+//       day: "05",
+//       month: "Sep",
+//       title: "Recibos de mantenimiento",
+//       timeAgo: "Hace 1 hora",
+//       contentText:
+//           "Estimados vecinos segun lo programado, se esta realizando los mantenimientos correspondientes lamentamos cualquier inconveniente.",
+//       publisher: "Corales Meddu S.A.C",
+//       rolPublisher: "Administrador",
+//       urlPhotoPublisher:
+//           "https://static.vecteezy.com/system/resources/previews/014/362/759/non_2x/system-administrator-icon-cartoon-computer-server-vector.jpg",
+//       hasMediaContent: true,
+//       files: [
+//         FilePostItemNewsDomain(
+//             url:
+//                 "https://a.storyblok.com/f/167454/1024x450/f3e428f0e2/cleaning-services2.png/m/",
+//             type: TypeFilePostItemNewsDomain.image),
+//         FilePostItemNewsDomain(
+//             url:
+//                 "https://media.admagazine.com/photos/61b7c48341b86fd66ff25cb8/4:3/w_2664,h_1998,c_limit/Edificios.jpg",
+//             type: TypeFilePostItemNewsDomain.image),
+//         FilePostItemNewsDomain(
+//             url:
+//                 "https://a.storyblok.com/f/167454/1024x450/f3e428f0e2/cleaning-services2.png/m/",
+//             type: TypeFilePostItemNewsDomain.image),
+//       ]),
 
   // PostItemNewsDomain(
   //     id: "id",
@@ -192,7 +191,7 @@ final fakeListPosts = [
   //     hasMediaContent: true,
   //     urlImageContent:
   //         "https://media.admagazine.com/photos/61b7c48341b86fd66ff25cb8/4:3/w_2664,h_1998,c_limit/Edificios.jpg")
-];
+// ];
 
 // final fakeListCommonAreas = [
 //   CommonAreaDomain(

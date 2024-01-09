@@ -29,7 +29,7 @@ class ReviewBookingView extends ConsumerWidget {
                     ReviewBookingAppbar(
                       item: item,
                     ),
-                    ReviewBoockingBody(detail: data),
+                    ReviewBoockingBody(detail: data, item: item),
                     ReviewBookingFooter(
                       idBooking: item.idBooking,
                     )

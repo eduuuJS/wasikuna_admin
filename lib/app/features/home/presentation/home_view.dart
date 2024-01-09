@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wasikuna_admin/app/features/home/presentation/home_controller.dart';
 import 'package:wasikuna_admin/app/features/home/presentation/widgets/area_selector.dart';
-import 'package:wasikuna_admin/app/features/home/presentation/widgets/chart_neighborgs.dart';
+import 'package:wasikuna_admin/app/features/home/presentation/widgets/create_post_zone.dart';
 import 'package:wasikuna_admin/app/features/home/presentation/widgets/home_appbar.dart';
 import 'package:wasikuna_admin/app/features/home/presentation/widgets/home_content.dart';
 import 'package:wasikuna_admin/app/shared/presentation/components/dialogs/loading_widget.dart';
@@ -33,7 +33,7 @@ class HomeView extends ConsumerWidget {
             delegate: HomeAppBarDelegate(),
             pinned: true,
           ),
-          const SliverToBoxAdapter(child: ChartNeighBorgs()),
+          const SliverToBoxAdapter(child: CreatePostZone()),
           const SliverToBoxAdapter(child: AreaSelector()),
           const HomeContent()
         ],

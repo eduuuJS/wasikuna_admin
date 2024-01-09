@@ -62,7 +62,7 @@ class ReviewBookingFooter extends ConsumerWidget {
         .reviewBooking(isApproved, idBooking);
     ref.watch(spinnerStateProvider.notifier).hide();
     if (response.success) {
-      context.go(AppRoutesNamed.successBooking);
+      context.go(AppRoutesNamed.successBooking, extra: isApproved);
     } else {
       Alerts.getDialog(
           context,

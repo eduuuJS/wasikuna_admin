@@ -1,5 +1,5 @@
 import 'package:wasikuna_admin/app/features/booking/domain/schedule_area_item_domain.dart';
-import 'package:wasikuna_admin/core/utils/constants.dart';
+import 'package:wasikuna_admin/core/utils/format_image.dart';
 import 'package:wasikuna_admin/core/utils/parser.dart';
 
 class ResponseScheduleAreaDto {
@@ -55,7 +55,7 @@ class ScheduleAreaDto {
         idBooking: "$id",
         flatNumber: userDepartment ?? "",
         ownerName: userName ?? "",
-        urlPhotoOwner: (userPhoto ?? "").replaceAll(localhost, myIP),
+        urlPhotoOwner: formatImage(userPhoto ?? ""),
         isOnFireOwner: false,
         startTime: Parser.timeToStringFormat12(startTime ?? ""),
         endTime: Parser.timeToStringFormat12(endTime ?? ""),

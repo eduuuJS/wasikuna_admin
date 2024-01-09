@@ -8,7 +8,8 @@ import 'package:wasikuna_admin/core/theme/app_colors.dart';
 import 'package:wasikuna_admin/core/utils/query_size.dart';
 
 class SuccesBooking extends ConsumerWidget {
-  const SuccesBooking({Key? key}) : super(key: key);
+  const SuccesBooking({Key? key, required this.isApprobed}) : super(key: key);
+  final bool isApprobed;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,7 +35,10 @@ class SuccesBooking extends ConsumerWidget {
                 const SizedBox(height: 25.0),
                 SizedBox(
                   width: QuerySize.width(context, 0.7),
-                  child: Text('Tu reserva ha sido creada satisfactoriamente',
+                  child: Text(
+                      isApprobed
+                          ? '¡La reserva fue aprobada satisfactoriamente!'
+                          : '¡La reserva ha sido observada!',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 20.0,
@@ -45,7 +49,9 @@ class SuccesBooking extends ConsumerWidget {
                 SizedBox(
                     width: QuerySize.width(context, 0.8),
                     child: Text(
-                        'En unos momentos la administración estará evaluando tu reserva. También puedes compartir tu solicitud a los conserjes para una rápida aprobación. ',
+                        isApprobed
+                            ? 'En unos momentos el cliente será notificado con la aprobación de su reserva. '
+                            : 'En unos momentos el cliente será notificado con la observación de su reserva. ',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 12.0,

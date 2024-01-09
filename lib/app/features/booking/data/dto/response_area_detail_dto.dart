@@ -1,5 +1,5 @@
 import 'package:wasikuna_admin/app/features/booking/domain/area_detail_domain.dart';
-import 'package:wasikuna_admin/core/utils/constants.dart';
+import 'package:wasikuna_admin/core/utils/format_image.dart';
 import 'package:wasikuna_admin/core/utils/parser.dart';
 
 class ResponseAreaDetailDto {
@@ -46,7 +46,7 @@ class ResponseAreaDetailDto {
   AreaDetailDomain toDomain() => AreaDetailDomain(
         idArea: "$id",
         nameArea: name ?? "",
-        urlPhoto: (imageDefault ?? "").replaceAll(localhost, myIP),
+        urlPhoto: formatImage(imageDefault ?? ""),
         openTime: Parser.timeToStringFormat12(starHour ?? ""),
         closeTime: Parser.timeToStringFormat12(endHour ?? ""),
         capacity: "$forum",

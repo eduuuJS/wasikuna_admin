@@ -1,4 +1,6 @@
+import 'package:uuid/uuid.dart';
 import 'package:wasikuna_admin/app/features/home/domain/post_item_domain.dart';
+import 'package:wasikuna_admin/core/utils/format_image.dart';
 import 'package:wasikuna_admin/core/utils/parser.dart';
 
 class ResponsePostDto {
@@ -43,6 +45,7 @@ class DataPost {
   int? id;
   String? userName;
   String? createdAt;
+  String? title;
   String? content;
 
   DataPost({
@@ -54,6 +57,7 @@ class DataPost {
     this.id,
     this.userName,
     this.createdAt,
+    this.title,
     this.content,
   });
 
@@ -76,26 +80,70 @@ class DataPost {
         id: json["id"],
         userName: json["user_name"],
         createdAt: json["created_at"],
+        title: json["title"],
         content: json["content"],
       );
 
   PostItemNewsDomain toDomain() {
+    final myFiles = generateFilesDomain();
     return PostItemNewsDomain(
       id: "$id",
       day: Parser.getDayString(createdAt ?? ""),
       month: Parser.getMonthString(createdAt ?? ""),
-      title: "Publicación $id",
+      title: title ?? "",
       timeAgo: Parser.getTimeAgo(createdAt ?? ""),
       contentText: content!,
       publisher: userName!,
       rolPublisher: "Administrador",
       urlPhotoPublisher:
           'https://static.vecteezy.com/system/resources/previews/014/362/759/non_2x/system-administrator-icon-cartoon-computer-server-vector.jpg',
-      hasMediaContent: attachmentsImages!.isNotEmpty,
-      files: attachmentsImages!
-          .map((e) => FilePostItemNewsDomain(
-              url: e, type: TypeFilePostItemNewsDomain.image))
-          .toList(),
+      hasMediaContent: myFiles.isNotEmpty,
+      files: myFiles,
     );
+  }
+
+  List<FilePostItemNewsDomain> generateFilesDomain() {
+    final result = <FilePostItemNewsDomain>[];
+    if (attachmentsImages!.isNotEmpty) {
+      result.addAll(attachmentsImages!
+          .map((e) => FilePostItemNewsDomain(
+              id: const Uuid().v4(),
+              url: formatImage(e),
+              type: TypeFilePostItemNewsDomain.image))
+          .toList());
+    }
+    if (attachmentsVideos!.isNotEmpty) {
+      result.addAll(attachmentsVideos!
+          .map((e) => FilePostItemNewsDomain(
+              id: const Uuid().v4(),
+              url: formatImage(e),
+              type: TypeFilePostItemNewsDomain.video))
+          .toList());
+    }
+    if (attachmentsAudios!.isNotEmpty) {
+      result.addAll(attachmentsAudios!
+          .map((e) => FilePostItemNewsDomain(
+              id: const Uuid().v4(),
+              url: formatImage(e),
+              type: TypeFilePostItemNewsDomain.audio))
+          .toList());
+    }
+    if (attachmentsPdfs!.isNotEmpty) {
+      result.addAll(attachmentsPdfs!
+          .map((e) => FilePostItemNewsDomain(
+              id: const Uuid().v4(),
+              url: formatImage(e),
+              type: TypeFilePostItemNewsDomain.pdf))
+          .toList());
+    }
+    if (attachmentsOthers!.isNotEmpty) {
+      result.addAll(attachmentsOthers!
+          .map((e) => FilePostItemNewsDomain(
+              id: const Uuid().v4(),
+              url: formatImage(e),
+              type: TypeFilePostItemNewsDomain.other))
+          .toList());
+    }
+    return result;
   }
 }

@@ -1,5 +1,5 @@
 import 'package:wasikuna_admin/app/features/booking/domain/common_area_domain.dart';
-import 'package:wasikuna_admin/core/utils/constants.dart';
+import 'package:wasikuna_admin/core/utils/format_image.dart';
 import 'package:wasikuna_admin/core/utils/parser.dart';
 
 class ResponseRoomInboxDto {
@@ -66,8 +66,11 @@ class RoomInbox {
         capacity: "$forum",
         qualification: "4.5",
         coast: Parser.stringNumericFormat(price ?? ""),
-        urlPhoto: (imageDefault ?? "").replaceAll(localhost, myIP),
-        images:
-            (images ?? []).map((e) => e.replaceAll(localhost, myIP)).toList(),
+        urlPhoto: formatImage(imageDefault ?? ""),
+        images: (images ?? [])
+            .map(
+              (e) => formatImage(e),
+            )
+            .toList(),
       );
 }

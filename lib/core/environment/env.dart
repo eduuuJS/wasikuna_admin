@@ -13,7 +13,7 @@ extension Environment on ENV {
       case ENV.DESA:
         return {
           "enviroment": "DESAROLLO",
-          "baseUrl": "http://192.168.18.53:3000",
+          "baseUrl": "https://greenti.pe",
           "connectTimeout": 600000,
           "receiveTimeout": 600000,
           "sendTimeout": 600000,

@@ -27,10 +27,12 @@ class PostItemNewsDomain {
 }
 
 class FilePostItemNewsDomain {
+  String id;
   String url;
   TypeFilePostItemNewsDomain type;
 
   FilePostItemNewsDomain({
+    required this.id,
     required this.url,
     required this.type,
   });
